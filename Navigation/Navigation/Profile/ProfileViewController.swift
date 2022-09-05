@@ -14,6 +14,7 @@ class ProfileViewController: UIViewController {
     
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "PostTableViewCell")
@@ -61,6 +62,12 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         view.addSubviews(tableView, coverView)
         setupConstraints()
+        
+        #if DEBUG
+            view.backgroundColor = .blue
+        #else
+            view.backgroundColor = .green
+        #endif
     }
     
     func setupConstraints(){
