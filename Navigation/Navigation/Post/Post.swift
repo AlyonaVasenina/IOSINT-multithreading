@@ -14,7 +14,9 @@ public struct Post {
     public var image: String
     public var likes: Int
     public var views: Int
-    
+}
+   
+extension Post{
     public static let test1 = Post(title: "Дельфины", author: "primocean_aquarium",
                             description: "Глаза дельфинов отлично приспособлены, чтобы видеть и под водой, и на воздухе. Поэтому они без труда рассчитывают траекторию для прыжков и хорошо различают своих тренеров.",
                             image: "dolfins", likes: 132, views: 36)
