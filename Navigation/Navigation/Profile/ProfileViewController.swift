@@ -64,7 +64,7 @@ class ProfileViewController: UIViewController {
         setupConstraints()
         
         #if DEBUG
-            view.backgroundColor = .blue
+            view.backgroundColor = .yellow
         #else
             view.backgroundColor = .green
         #endif
