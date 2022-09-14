@@ -7,6 +7,7 @@
 
 import UIKit
 import StorageService
+import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
     
@@ -14,10 +15,11 @@ class PostTableViewCell: UITableViewCell {
         didSet {
             guard let post = post else { return }
             titlePostLabel.text = post.title
-            imagePostView.image = UIImage(named: post.image)
             textPostLabel.text = post.description
             likesLabel.text = "Likes: \(post.likes)"
             viewsLabel.text = "Views: \(post.views)"
+            let image = UIImage(named: post.image)
+            imageProcess.processImage(sourceImage: image!, filter: .sepia(intensity: 0.7), completion: {self.imagePostView.image = $0})
         }
     }
         
@@ -35,6 +37,8 @@ class PostTableViewCell: UITableViewCell {
         image.contentMode = .scaleAspectFit
         return image
     }()
+    
+    private let imageProcess = ImageProcessor()
     
     private var textPostLabel: UILabel = {
         let text = UILabel()
