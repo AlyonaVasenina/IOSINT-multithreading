@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProfileHeaderView: UIView {
     
@@ -88,36 +89,34 @@ class ProfileHeaderView: UIView {
     
     func setupConstraints(){
         
-        avatarImageView.toAutoLayout()
-        fullNameLabel.toAutoLayout()
-        statusLabel.toAutoLayout()
-        statusTextField.toAutoLayout()
-        setStatusButton.toAutoLayout()
+        avatarImageView.snp.makeConstraints {
+            $0.top.left.equalToSuperview().inset(16)
+            $0.height.width.equalTo(86)
+        }
         
-        NSLayoutConstraint.activate([
-            avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            avatarImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 86),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 86),
+        fullNameLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(27)
+            $0.left.equalTo(avatarImageView.snp.right).offset(16)
+            $0.right.equalToSuperview().inset(16)
+        }
         
-            fullNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
-            fullNameLabel.leftAnchor.constraint(equalTo: avatarImageView.rightAnchor, constant: 16),
-            fullNameLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
+        statusLabel.snp.makeConstraints {
+            $0.left.equalTo(fullNameLabel.snp.left)
+            $0.right.equalToSuperview().inset(16)
+            $0.bottom.equalTo(avatarImageView.snp.bottom).inset(18)
+        }
         
-            statusLabel.leftAnchor.constraint(equalTo: fullNameLabel.leftAnchor),
-            statusLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
-            statusLabel.bottomAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: -18),
+        statusTextField.snp.makeConstraints {
+            $0.left.right.equalTo(statusLabel)
+            $0.height.equalTo(40)
+            $0.top.equalTo(statusLabel.snp.bottom).offset(6)
+        }
         
-            statusTextField.leftAnchor.constraint(equalTo: statusLabel.leftAnchor),
-            statusTextField.rightAnchor.constraint(equalTo: statusLabel.rightAnchor),
-            statusTextField.heightAnchor.constraint(equalToConstant: 40),
-            statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 6),
-        
-            setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 34),
-            setStatusButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
-            setStatusButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
-            setStatusButton.heightAnchor.constraint(equalToConstant: 50),
-            setStatusButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
-        ])
+        setStatusButton.snp.makeConstraints {
+            $0.top.equalTo(avatarImageView.snp.bottom).offset(34)
+            $0.left.right.equalToSuperview().inset(16)
+            $0.height.equalTo(50)
+            $0.bottom.equalToSuperview().inset(16)
+        }
     }
 }
